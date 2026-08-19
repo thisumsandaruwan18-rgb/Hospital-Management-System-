@@ -37,5 +37,10 @@ public class DoctorController {
         doctorService.deleteDoctor(id);
         return "Doctor deleted successfully.";
     }
+
+    @PutMapping("/update/{id}")
+    public Doctor updateDoctor(@PathVariable int id, @RequestBody Doctor doctor) {
+        return doctorService.updateDoctor(id, doctor);
+    }
     
 }

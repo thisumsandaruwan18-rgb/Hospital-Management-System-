@@ -1,5 +1,6 @@
 package com.smartcare.hospital.service;
 
+
 import com.smartcare.hospital.entity.Patient;
 
 import com.smartcare.hospital.repository.PatientRepository;
@@ -42,5 +43,9 @@ public class PatientService {
     public void deletePatient(int id) {
 
         patientRepository.deleteById(id);
+    }
+
+    public Patient getPatientById(int id){
+        return patientRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Patient not found with ID: " + id));
     }
 }

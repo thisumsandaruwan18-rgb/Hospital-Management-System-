@@ -36,4 +36,5 @@ public class AppointmentController {
         return "Appointment deleted successfully.";
     }
 
+
 }

@@ -33,5 +33,17 @@ public class DoctorService {
         return doctorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Doctor not found with ID: " + id));
     }
 
-    
+    //Update doctor
+    public Doctor updateDoctor(int id, Doctor updatedDoctor) {
+        Doctor existingDoctor = getDoctorById(id);
+
+        existingDoctor.setDoName(updatedDoctor.getDoName());
+        existingDoctor.setSpecialization(updatedDoctor.getSpecialization());
+        existingDoctor.setQualification(updatedDoctor.getQualification());
+        existingDoctor.setConsultationFee(updatedDoctor.getConsultationFee());
+        existingDoctor.setContactNo(updatedDoctor.getContactNo());
+        existingDoctor.setDeId(updatedDoctor.getDeId());
+
+        return doctorRepository.save(existingDoctor);
+    }
 }
