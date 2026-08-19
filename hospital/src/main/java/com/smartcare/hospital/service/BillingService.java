@@ -18,6 +18,10 @@ public class BillingService {
     private Map<String, PaymentService> paymentMethods;
 
     public Billing payBill(Billing billing) {
+
+        if (billing.getTotalAmount().compareTo(java.math.BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Bill amounts cannot be negative.");
+        }
         // 1. Polymorphism in action: Fetch the correct payment class based on the String provided (e.g., "Cash")
         PaymentService selectedPaymentMethod = paymentMethods.get(billing.getPaymentMethod());
 
