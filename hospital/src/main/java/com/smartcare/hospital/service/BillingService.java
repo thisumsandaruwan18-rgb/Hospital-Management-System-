@@ -13,7 +13,6 @@ public class BillingService {
     @Autowired
     private BillingRepository billingRepository;
 
-    // Spring Boot automatically injects our Cash, Card, and Online classes into this Map!
     @Autowired
     private Map<String, PaymentService> paymentMethods;
 

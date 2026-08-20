@@ -4,6 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 import java.sql.Date;
 
 @Entity
@@ -14,6 +17,7 @@ public class Patient extends Person {
     @Column(name = "Pa_ID")
     private int paId;
 
+    @NotBlank(message= "Name cannot be empty")
     @Column(name = "Full_Name")
     private String fullName;
 
@@ -26,6 +30,7 @@ public class Patient extends Person {
     @Column(name = "Address")
     private String address;
 
+    @Pattern(regexp = "^(A|B|AB|O|[+-]$)",message = "Invalid blood group! Please enter a valid one (e.g., A+, O-, B+, AB-)")
     @Column(name = "BloodGroup")
     private String bloodGroup;
 
