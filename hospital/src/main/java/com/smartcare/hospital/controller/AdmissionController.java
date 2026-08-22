@@ -13,7 +13,7 @@ public class AdmissionController {
     @Autowired
     private AdmissionService admissionService;
 
-    @PostMapping("/add")
+    @PostMapping("/admit")
     public Admission addAdmission(@RequestBody Admission admission) {
 
         return admissionService.addAdmission(admission);

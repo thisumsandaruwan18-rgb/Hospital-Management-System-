@@ -30,7 +30,6 @@ public class Patient extends Person {
     @Column(name = "Address")
     private String address;
 
-    @Pattern(regexp = "^(A|B|AB|O|[+-]$)",message = "Invalid blood group! Please enter a valid one (e.g., A+, O-, B+, AB-)")
     @Column(name = "BloodGroup")
     private String bloodGroup;
 

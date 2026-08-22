@@ -18,6 +18,10 @@ public class PatientService {
     // Register a new patient
     public Patient registerPatient(Patient patient) {
 
+        if (patientRepository.existsById(patient.getPaId())) {
+            throw new IllegalArgumentException("Patient ID " + patient.getPaId() + " already exists!");
+
+        }
 
         //  Validate Full Name
         if (patient.getFullName() == null || patient.getFullName().trim().isEmpty()) {
@@ -27,6 +31,12 @@ public class PatientService {
         //  Validate Gender
         if (patient.getGender() == null || patient.getGender().trim().isEmpty()) {
             throw new IllegalArgumentException("Validation Error: Gender is required.");
+        }
+
+        String bloodGroup = patient.getBloodGroup();
+
+        if (patient.getBloodGroup() == null || patient.getBloodGroup().trim().isEmpty() || !bloodGroup.matches("^(A|B|AB|O)[+-]$")) {
+            throw new IllegalArgumentException("Validation Error: Invalid blood group! Please enter a valid one (e.g., A+, O-, B+, AB-).");
         }
 
         return patientRepository.save(patient);
@@ -49,6 +59,7 @@ public class PatientService {
     public Patient updatePatient(int id,Patient updatedPatient) {
         Patient existingPatient = getPatientById(id);
 
+        existingPatient.setPaId(updatedPatient.getPaId());
         existingPatient.setFullName(updatedPatient.getFullName());
         existingPatient.setGender(updatedPatient.getGender());
         existingPatient.setAddress(updatedPatient.getAddress());
